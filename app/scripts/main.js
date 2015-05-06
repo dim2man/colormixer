@@ -1,6 +1,10 @@
 $(function(){
 
-  var optionsHtml = COLORS.map(function(color) {
+  var optionsHtml = COLORS
+  .sort(function(c1, c2) {
+    return c1.rus.localeCompare(c2.rus);
+  })
+  .map(function(color) {
     return '<option value="'+color.hex+'">'+color.rus+'</option>';
   }).join('');
 
@@ -49,6 +53,25 @@ $(function(){
     return rgb2hex(rgb);
   }
 
+  function nearest(hex) {
+    var rgb = hex2rgb(hex);
+    var dist = Infinity;
+    var color = null;
+    for(var i=0; i<COLORS.length; i++) {
+      var _rgb = hex2rgb(COLORS[i].hex);
+      var _dist = 0;
+      for(var j=0; j<3; j++) {
+        _dist += (rgb[j] - _rgb[j])*(rgb[j] - _rgb[j]);
+      }
+      if(_dist<dist) {
+        dist = _dist;
+        color = COLORS[i];
+      }
+      if(dist === 0) break;
+    }
+    return color;
+  }
+
   function updateColor(cls, color) {
     $('.'+cls)
     .css('background-color', '#'+color)
@@ -59,8 +82,11 @@ $(function(){
     var hex1 = $('.sample1').attr('data-color');
     var hex2 = $('.sample2').attr('data-color');
     var hex  = mix(hex1, hex2);
-    console.log(hex1 + ' ' + hex2 + ' ' + hex);
     updateColor('result', hex);
+    var near = nearest(hex);
+    updateColor('ref', near.hex);
+    $('.ref-name').text(near.rus);
+    console.log(hex1 + ' + ' + hex2 + ' = ' + hex + ' ( ' + near.hex + ' )');
   }
 
   updateColor('sample1', $('[data-sample="sample1"]').val());

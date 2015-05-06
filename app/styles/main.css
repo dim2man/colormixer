@@ -7,7 +7,9 @@ body {background: gray;}
 table {width: 100%;}
 td {padding: 2%;text-align: center;}
 
-.sample, .result {display: inline-block; width: 100px; height: 100px;}
+.sample, .res {display: inline-block; width: 100px; height: 100px;}
+.result, .ref {height: 50px;}
+.ref-name {display: inline-block;background-color: white;font-family: DejaVu Sans, Arial;font-size: 11pt;padding: 0 10px;color: gray;}
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
