@@ -3,6 +3,12 @@
   padding: 0;
 }
 
+body {background: gray;}
+table {width: 100%;}
+td {padding: 2%;text-align: center;}
+
+.sample, .result {display: inline-block; width: 100px; height: 100px;}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
 }

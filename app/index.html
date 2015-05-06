@@ -16,6 +16,19 @@
     <!-- endbuild -->
   </head>
   <body>
+    <table>
+      <tr>
+        <td><select class="chooser" data-sample="sample1"></select></td>
+        <td><select class="chooser" data-sample="sample2"></select></td>
+      </tr>
+      <tr>
+        <td><div class="sample sample1"></div></td>
+        <td><div class="sample sample2"></div></td>
+      </tr>
+      <tr>
+        <td colspan="2"><div class="result"></div></td>
+      </tr>
+    </table>
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
@@ -24,6 +37,7 @@
     <!-- endbuild -->
 
     <!-- build:js({app,.tmp}) scripts/main.js -->
+    <script src="scripts/colors.js"></script>
     <script src="scripts/main.js"></script>
     <!-- endbuild -->
 </body>
